@@ -4,6 +4,7 @@ import { Form, Select, Button, Col, Input, Row, message } from "antd";
 
 import { useNavigate } from "react-router-dom";
 import { adminService } from "../../../service/adminService";
+import { RollbackOutlined } from "@ant-design/icons";
 
 export default function AddUserPage() {
   let loginData = useSelector((state) => state.userSlice.loginData);
@@ -60,6 +61,7 @@ export default function AddUserPage() {
       .then((result) => {
         console.log("Reg res:", result);
         message.success("Add success");
+        navigate("/admin/list-user");
       })
       .catch((err) => {
         console.log(err);
@@ -87,7 +89,14 @@ export default function AddUserPage() {
   renderDanhSachLoaiNguoiDung();
   return (
     <div className="container py-20">
-      <h1 className="mb-5">Add user</h1>
+      {/* go back button */}
+      <button
+        onClick={() => navigate("/admin/list-user")}
+        className="py-1 px-2 bg-white text-blue-500 rounded border-blue-500 border-2"
+      >
+        <RollbackOutlined />
+      </button>
+      <h1 className="my-5 font-bold">Add user</h1>
       <Form
         {...formItemLayout}
         form={form}

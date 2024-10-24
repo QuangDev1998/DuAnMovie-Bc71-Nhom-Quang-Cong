@@ -45,8 +45,8 @@ export default function FormLogin() {
         span: 24,
       }}
       initialValues={{
-        taiKhoan: "admin321",
-        matKhau: "1234",
+        taiKhoan: "mafia",
+        matKhau: "8386",
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}

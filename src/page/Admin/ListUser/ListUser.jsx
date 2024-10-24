@@ -15,6 +15,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { adminService } from "../../../service/adminService";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ReloadOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 
 export default function ListUser() {
   let navigate = useNavigate();
@@ -69,16 +75,21 @@ export default function ListUser() {
     fetchListUser();
   };
   const onFinish = (values) => {
-    console.log("Success:", values);
-    adminService
-      .searchUserAction(values.tuKhoa)
-      .then((result) => {
-        console.log(result);
-        setlistUser(result.data.content);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log("Success:", values.tuKhoa);
+
+    if (values.tuKhoa === "") {
+      fetchListUser();
+    } else {
+      adminService
+        .searchUserAction(values.tuKhoa)
+        .then((result) => {
+          console.log(result);
+          setlistUser(result.data.content);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -120,7 +131,7 @@ export default function ListUser() {
               variant="solid"
               className="mr-2"
             >
-              Delete
+              <DeleteOutlined />
             </Button>
             <Button
               onClick={() => {
@@ -130,7 +141,7 @@ export default function ListUser() {
               color="default"
               variant="solid"
             >
-              Edit
+              <EditOutlined />
             </Button>
           </div>
         );
@@ -149,6 +160,7 @@ export default function ListUser() {
       .then((result) => {
         message.success("Update success");
         fetchListUser();
+        setOpen(false);
       })
       .catch((err) => {
         console.log(err);
@@ -210,10 +222,10 @@ export default function ListUser() {
           <Space.Compact style={{ width: "100%" }}>
             <Input placeholder="Find username" />
             <Button type="primary" htmlType="submit">
-              Search
+              <SearchOutlined />
             </Button>
             <Button htmlType="button" onClick={onReset}>
-              Reset
+              <ReloadOutlined />
             </Button>
           </Space.Compact>
         </Form.Item>

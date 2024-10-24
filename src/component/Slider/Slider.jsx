@@ -3,6 +3,7 @@ import {
   DesktopOutlined,
   FileOutlined,
   PieChartOutlined,
+  PlaySquareOutlined,
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -20,10 +21,12 @@ function getItem(label, key, icon, children) {
 }
 const items = [
   getItem("Admin", "sub1", <UserOutlined />, [
-    getItem(<NavLink to={"/admin/list-user"}>List User</NavLink>, "3"),
-    getItem(<NavLink to={"/admin/add-user"}>Add User</NavLink>, "4"),
-    getItem("List Film", "5"),
-    getItem("Add Film", "6"),
+    getItem(<NavLink to="/admin/list-user">List User</NavLink>, "3"),
+    getItem(<NavLink to="/admin/add-user">Add User</NavLink>, "4"),
+  ]),
+  getItem("Film", "sub2", <PlaySquareOutlined />, [
+    getItem(<NavLink to={"/admin/list-movie"}>List Movie</NavLink>, "5"),
+    getItem(<NavLink to="/admin/add-movie">Add Movie</NavLink>, "6"),
   ]),
 ];
 const Slider = ({ content }) => {

@@ -7,9 +7,11 @@ import DetaiPage from "./page/DetailPage/DetaiPage";
 import ListUser from "./page/Admin/ListUser/ListUser";
 import RegisterPage from "./page/User/RegisterPage/RegisterPage";
 import AccInfoPage from "./page/User/AccInfoPage/AccInfoPage";
-import FormInModal from "./page/User/AccInfoPage/FormInModal";
 import AddUserPage from "./page/Admin/ListUser/AddUserPage";
 import AdminLayout from "./template/AdminLayout";
+import ListMovie from "./page/Admin/ListMovie/ListMovie";
+import AddMovie from "./page/Admin/ListMovie/AddMovie";
+import EditMovie from "./page/Admin/ListMovie/EditMovie";
 
 function App() {
   return (
@@ -19,6 +21,10 @@ function App() {
         <Route path="/" element={<Layout content={<HomePage />} />} />
         <Route path="/login" element={<Layout content={<LoginPage />} />} />
         <Route
+          path="/acc-info"
+          element={<Layout content={<AccInfoPage />} />}
+        />
+        <Route
           path="/register"
           element={<Layout content={<RegisterPage />} />}
         />
@@ -27,19 +33,9 @@ function App() {
           element={<Layout content={<DetaiPage />} />}
         />
         {/* admin route */}
+        {/* admin/list-user route */}
         <Route path="/list-user" element={<Layout content={<ListUser />} />} />
-        <Route
-          path="/acc-info"
-          element={<Layout content={<AccInfoPage />} />}
-        />
-        <Route
-          path="/form-modal"
-          element={<Layout content={<FormInModal />} />}
-        />
-        <Route
-          path="/add-user"
-          element={<Layout content={<AddUserPage />} />}
-        />
+
         <Route
           path="/admin/acc-info"
           element={<AdminLayout content={<AccInfoPage />} />}
@@ -51,6 +47,19 @@ function App() {
         <Route
           path="/admin/add-user"
           element={<AdminLayout content={<AddUserPage />} />}
+        />
+        {/* admin/list-movie route */}
+        <Route
+          path="/admin/list-movie"
+          element={<AdminLayout content={<ListMovie />} />}
+        />
+        <Route
+          path="/admin/add-movie"
+          element={<AdminLayout content={<AddMovie />} />}
+        />
+        <Route
+          path="/admin/edit-movie/:id"
+          element={<AdminLayout content={<EditMovie />} />}
         />
       </Routes>
     </BrowserRouter>
