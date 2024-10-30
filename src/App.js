@@ -12,6 +12,8 @@ import AdminLayout from "./template/AdminLayout";
 import ListMovie from "./page/Admin/ListMovie/ListMovie";
 import AddMovie from "./page/Admin/ListMovie/AddMovie";
 import EditMovie from "./page/Admin/ListMovie/EditMovie";
+import BookingPage from "./page/BookingPage/BookingPage";
+import TicketRoom from "./page/TicketRoom/TicketRoom";
 
 function App() {
   return (
@@ -32,6 +34,15 @@ function App() {
           path="/detail/:id"
           element={<Layout content={<DetaiPage />} />}
         />
+        <Route
+          path="/booking/:id"
+          element={<Layout content={<BookingPage />} />}
+        />
+        <Route
+          path="/ticket-room/:id"
+          element={<Layout content={<TicketRoom />} />}
+        />
+
         {/* admin route */}
         {/* admin/list-user route */}
         <Route path="/list-user" element={<Layout content={<ListUser />} />} />

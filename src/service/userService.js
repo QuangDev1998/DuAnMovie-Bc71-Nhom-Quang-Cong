@@ -28,4 +28,28 @@ export let movieService = {
     http.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${idPhim}`),
   layHeThongRap: () =>
     http.get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap"),
+  layThongTinLichChieu: (maPhim) =>
+    http.get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`),
+  layDanhSachPhongVe: (maLichChieu) =>
+    http.get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`),
+  datVe: (maLichChieu, dsGheDuocChon, bearerToken) =>
+    http.post(
+      `/api/QuanLyDatVe/DatVe`,
+      // payload
+      {
+        maLichChieu: maLichChieu,
+        danhSachVe: dsGheDuocChon.map((ghe) => {
+          return {
+            maGhe: ghe.maGhe,
+            giaVe: ghe.giaVe,
+          };
+        }),
+      },
+      // token
+      {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      }
+    ),
 };
