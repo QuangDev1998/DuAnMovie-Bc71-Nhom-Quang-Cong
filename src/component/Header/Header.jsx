@@ -1,102 +1,122 @@
 import React from "react";
-
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 
 export default function Header() {
-  let navigate = useNavigate();
-  let loginData = useSelector((state) => state.userSlice.loginData);
-  let renderLoginOut = () => {
-    if (loginData) {
-      return (
-        <Dropdown
-          menu={{
-            items,
-          }}
-          trigger={["hover"]}
-        >
-          <a onClick={(e) => e.preventDefault()}>
-            <div className="flex space-x-2">
-              <strong>{loginData.taiKhoan}</strong>
-              <UserOutlined
-                style={{
-                  fontSize: "24px",
-                  borderRadius: "50%",
-                  borderColor: "black",
-                  borderWidth: "2px",
-                }}
-              />
-            </div>
-          </a>
-        </Dropdown>
-      );
-      // <div>
-
-      {
-        /* </div> */
-      }
-    } else {
-      return (
-        <div className="flex space-x-2 ">
-          <button
-            onClick={() => {
-              window.location.href = "/login";
-            }}
-            type="button"
-            className=" py-1 px-3 bg-blue-600 rounded text-white"
-          >
-            {" "}
-            Login
-          </button>
-          <button
-            onClick={() => navigate("/register")}
-            type="button"
-            className=" py-1 px-3 bg-green-600 rounded text-white"
-          >
-            {" "}
-            Register
-          </button>
-        </div>
-      );
-    }
-  };
-  // logout function
+  let user = useSelector((state) => state.userSlice.dataLogin);
+  console.log("user:", user);
   let handleLogout = () => {
     localStorage.removeItem("USER_LOGIN");
-    window.location.href = "/";
+    window.location.href = "/login";
   };
-  // Dropdown data
-  const items = [
-    {
-      label: (
-        <a
-          onClick={() => {
-            if (loginData.maLoaiNguoiDung === "QuanTri") {
-              navigate("/admin/acc-info");
-            } else {
-              navigate("/acc-info");
-            }
-          }}
-        >
-          Account info
-        </a>
-      ),
-      key: "0",
-    },
-    {
-      label: <a onClick={handleLogout}>Logout</a>,
-      key: "1",
-    },
-  ];
-
+  // let renderMenu = () => {
+  //   if (user) {
+  //     return (
+  //       <>
+  //         <strong className="text-xl mr-2">{user.hoTen}</strong>
+  //         <button
+  //           onClick={handleLogout}
+  //           className="bg-white px-10 py-1 rounded border-2 text-red-600 border-red-600"
+  //         >
+  //           Logout
+  //         </button>
+  //       </>
+  //     );
+  //   } else {
+  //     return (
+  //       <>
+  //         <NavLink
+  //           to="/login"
+  //           className="text-white px-10 py-2 rounded border-2 bg-red-600"
+  //         >
+  //           Login
+  //         </NavLink>
+  //       </>
+  //     );
+  //   }
+  // };
+  // return (
+  //   <div className="">
+  //     <div className="container h-20 flex justify-between items-center">
+  //       <NavLink to="/" className="text-2xl font-bold text-red-600">
+  //         CyberFlix
+  //       </NavLink>
+  //       <div>{renderMenu()}</div>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="flex justify-between py-5 px-2 items-center border-2">
-      <NavLink to="/" className="text-red-600 font-bold text-2xl ">
-        Cinema
-      </NavLink>
-      <div className="">{renderLoginOut()}</div>
-    </div>
+    <header className=" bg-white fixed w-full z-10 bg-opacity-90 ">
+      <div className=" flex justify-between h-16 mx-auto">
+        <NavLink
+          to="/"
+          className="text-2xl self-center px-8 font-bold text-red-600"
+        >
+          Netflix
+        </NavLink>
+        <ul className="items-stretch hidden space-x-3 lg:flex">
+          <li className="flex">
+            <a
+              // rel="noopener noreferrer"
+              href="#"
+              className="flex items-center px-4 font-semibold hover:text-red-600 transition"
+            >
+              Lịch Chiếu
+            </a>
+          </li>
+          <li className="flex">
+            <a
+              // rel="noopener noreferrer"
+              href="#"
+              className="flex items-center px-4 font-semibold  hover:text-red-600 transition "
+            >
+              Cụm Rạp
+            </a>
+          </li>
+          <li className="flex">
+            <a
+              // rel="noopener noreferrer"
+              href="#"
+              className="flex items-center px-4 font-semibold  hover:text-red-600 transition "
+            >
+              Ứng Dụng
+            </a>
+          </li>
+        </ul>
+        <div className="items-center flex-shrink-0 hidden lg:flex">
+          <button
+            onClick={handleLogout}
+            className="self-center py-3 font-semibold rounded  hover:text-red-600 transition "
+          >
+            Đăng Nhập
+          </button>
+          <button
+            onClick={handleLogout}
+            className="self-center px-3 py-3 font-semibold rounded  hover:text-red-600 transition "
+          >
+            Đăng Xuất
+          </button>
+        </div>
+        {/* <button className="p-4 lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6 dark:text-gray-800"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button> */}
+        {/* <div>{renderMenu()}</div> */}
+      </div>
+    </header>
   );
 }

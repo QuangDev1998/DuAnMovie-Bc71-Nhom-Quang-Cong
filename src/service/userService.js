@@ -23,6 +23,7 @@ export let userService = {
 };
 
 export let movieService = {
+  layDanhSachBanner: () => http.get("/api/QuanLyPhim/LayDanhSachBanner"),
   layDanhSachPhim: () => http.get("/api/QuanLyPhim/LayDanhSachPhim"),
   layThongTinPhim: (idPhim) =>
     http.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${idPhim}`),
