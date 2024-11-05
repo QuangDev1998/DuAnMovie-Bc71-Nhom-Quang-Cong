@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Component/Header/Header";
+import Header from "../component/Header/Header";
 export default function Layout({ content }) {
   return (
     <div>
