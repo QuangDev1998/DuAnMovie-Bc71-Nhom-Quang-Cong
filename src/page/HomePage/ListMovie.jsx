@@ -29,5 +29,5 @@ export default function ListMovie() {
       );
     });
   };
-  return <div className="grid grid-cols-6 gap-5">{renderMovie()}</div>;
+  return <div className="mt-5 grid grid-cols-6 gap-5">{renderMovie()}</div>;
 }

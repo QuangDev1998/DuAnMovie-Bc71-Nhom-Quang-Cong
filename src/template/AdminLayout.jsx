@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Component/Header/Header";
-import Slider from "../Component/Slider/Slider";
+import Header from "../component/Header/Header";
+import Slider from "../component/Slider/Slider";
 export default function AdminLayout({ content }) {
   return (
     <div>
