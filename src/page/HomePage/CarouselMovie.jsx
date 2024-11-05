@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { movieService } from "../../service/userService";
 import { useNavigate } from "react-router-dom";
 const contentStyle = {
-  height: "400px",
-  color: "#DC2626",
-  lineHeight: "160px",
-  textAlign: "center",
+  // height: "400px",
+  // color: "#DC2626",
+  // lineHeight: "160px",
+  // textAlign: "center",
   backgroundPosition: "center",
-  backgroudSize: "100%",
+  backgroudSize: "cover",
   backgroudRepeat: "no-repeat",
 };
 export default function CarouselMovie() {
@@ -27,23 +27,14 @@ export default function CarouselMovie() {
     return movieArr.map((phim) => {
       return (
         <div
-          className=""
+          className="h-screen"
           // style={{ ...contentStyle, backgroundImage: `url(${phim.hinhAnh})` }}
         >
-          <img
-            className="object-fill"
-            src={phim.hinhAnh}
-            style={{ height: 500 }}
-            alt=""
-          />
+          <img className="w-full h-full" src={phim.hinhAnh} alt="" />
         </div>
       );
     });
   };
 
-  return (
-    <Carousel infinite draggable>
-      {renderMovie()}
-    </Carousel>
-  );
+  return <Carousel draggable>{renderMovie()}</Carousel>;
 }
