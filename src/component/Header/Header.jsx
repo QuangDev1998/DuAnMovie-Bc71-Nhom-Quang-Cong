@@ -92,11 +92,13 @@ export default function Header() {
   ];
 
   return (
-    <div className="flex justify-between py-5 px-2 items-center border-2">
-      <NavLink to="/" className="text-red-600 font-bold text-2xl ">
-        Cinema
-      </NavLink>
-      <div className="">{renderLoginOut()}</div>
+    <div className="sticky top-0 z-50">
+      <div className="bg-white flex justify-between py-5 px-2 items-center border-2 ">
+        <NavLink to="/" className="text-red-600 font-bold text-2xl ">
+          Cinema
+        </NavLink>
+        <div className="">{renderLoginOut()}</div>
+      </div>
     </div>
   );
 }

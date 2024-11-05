@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { movieService } from "../../service/userService";
 import { useSelector } from "react-redux";
-import { message } from "antd";
-
+import { Button, Modal } from "antd";
+import verifiedIcon from "../../asset/verified-icon.gif";
+import crossIcon from "../../asset/cross.png";
 export default function TicketRoom() {
   let params = useParams();
-  let { accessToken } = useSelector((state) => state.userSlice.loginData);
+  let navigate = useNavigate();
+  let loginData = useSelector((state) => state.userSlice.loginData);
+
+  let accessToken = useSelector(
+    (state) => state.userSlice.loginData?.accessToken
+  );
   const [phongVe, setPhongVe] = useState({});
   const [thongTinPhim, setThongTinPhim] = useState({});
   const [danhSachGhe, setDanhSachGhe] = useState([]);
   const [gheDuocChon, setGheDuocChon] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
+
   // call api lay thong tin phong ve
   let fetchDanhSachPhongVe = () => {
     movieService
@@ -106,17 +115,22 @@ export default function TicketRoom() {
     });
   };
   let handleDatVe = (maLichChieu, dsGheDuocChon, bearerToken) => {
-    movieService
-      .datVe(maLichChieu, dsGheDuocChon, bearerToken)
-      .then((result) => {
-        console.log(result);
-        setGheDuocChon([]);
-        message.success("Purchase success");
-        fetchDanhSachPhongVe();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (loginData) {
+      movieService
+        .datVe(maLichChieu, dsGheDuocChon, bearerToken)
+        .then((result) => {
+          console.log(result);
+          setModalOpen(true);
+          setGheDuocChon([]);
+
+          fetchDanhSachPhongVe();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setModal2Open(true);
+    }
   };
   return (
     <div className="container">
@@ -178,6 +192,60 @@ export default function TicketRoom() {
           </div>
         </div>
       </div>
+      {/* modal thong bao*/}
+      <Modal
+        centered
+        open={modalOpen}
+        onOk={() => setModalOpen(false)}
+        onCancel={() => setModalOpen(false)}
+        footer={null}
+      >
+        <img
+          className=" mx-auto"
+          style={{ height: "80px" }}
+          src={verifiedIcon}
+          alt=""
+        />
+        <p className="text-2xl text-center my-5">Purchase success!</p>
+        <Button
+          className="w-full "
+          type="primary"
+          onClick={() => navigate("/")}
+        >
+          Back to home
+        </Button>
+      </Modal>
+      {/* modal yeu cau */}
+      <Modal
+        centered
+        open={modal2Open}
+        onOk={() => setModal2Open(false)}
+        onCancel={() => setModal2Open(false)}
+        footer={null}
+      >
+        <img className="h-10 mx-auto " src={crossIcon} alt="" />
+        <p className="text-2xl text-center my-5">Please login to continue</p>
+        <div className="flex space-x-2  justify-center">
+          <button
+            onClick={() => {
+              window.location.href = "/login";
+            }}
+            type="button"
+            className=" py-1 px-3 bg-blue-600 rounded text-white"
+          >
+            {" "}
+            Login
+          </button>
+          <button
+            onClick={() => navigate("/register")}
+            type="button"
+            className=" py-1 px-3 bg-green-600 rounded text-white"
+          >
+            {" "}
+            Register
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }
