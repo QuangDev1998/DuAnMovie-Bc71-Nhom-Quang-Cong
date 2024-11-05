@@ -28,11 +28,12 @@ export default function CarouselMovie() {
       return (
         <div
           className=""
-          style={{ ...contentStyle, backgroundImage: `url(${phim.hinhAnh})` }}
+          // style={{ ...contentStyle, backgroundImage: `url(${phim.hinhAnh})` }}
         >
           <img
-            className="w-full h-85 object-cover rounded-lg"
+            className="object-fill"
             src={phim.hinhAnh}
+            style={{ height: 500 }}
             alt=""
           />
         </div>
@@ -41,9 +42,8 @@ export default function CarouselMovie() {
   };
 
   return (
-    <div>
-      {" "}
-      <Carousel autoplay>{renderMovie()}</Carousel>
-    </div>
+    <Carousel infinite draggable>
+      {renderMovie()}
+    </Carousel>
   );
 }
