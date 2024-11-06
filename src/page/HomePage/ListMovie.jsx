@@ -20,6 +20,7 @@ export default function ListMovie() {
     return movieArr.map((phim) => {
       return (
         <Card
+          className="hover:bg-red-600 hover:scale-90 duration-300 transition"
           onClick={() => navigate(`detail/${phim.maPhim}`)}
           hoverable
           cover={<img className="h-80" alt="example" src={phim.hinhAnh} />}
@@ -29,5 +30,5 @@ export default function ListMovie() {
       );
     });
   };
-  return <div className="mt-5 grid grid-cols-6 gap-5">{renderMovie()}</div>;
+  return <div className="mt-5 grid grid-cols-6 gap-5 ">{renderMovie()}</div>;
 }
