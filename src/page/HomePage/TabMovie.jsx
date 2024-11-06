@@ -7,23 +7,7 @@ export default function TabMovie() {
   const onChange = (key) => {
     console.log(key);
   };
-  const items = [
-    {
-      key: "1",
-      label: "Tab 1",
-      children: "Content of Tab Pane 1",
-    },
-    {
-      key: "2",
-      label: "Tab 2",
-      children: "Content of Tab Pane 2",
-    },
-    {
-      key: "3",
-      label: "Tab 3",
-      children: "Content of Tab Pane 3",
-    },
-  ];
+
   const [heThongRap, setHeThongRap] = useState([]);
   useEffect(() => {
     movieService
@@ -34,6 +18,7 @@ export default function TabMovie() {
       })
       .catch((err) => {});
   }, []);
+
   let renderHeThongRap = () => {
     return heThongRap.map((heThongRap) => {
       return {
@@ -41,16 +26,17 @@ export default function TabMovie() {
         label: <img className="w-20" src={heThongRap.logo} alt="" />,
         children: (
           <Tabs
-            style={{ height: 400 }}
             tabPosition="left"
             defaultActiveKey="1"
             items={renderCumRap(heThongRap.lstCumRap)}
             onChange={onChange}
+            className="h-full"
           />
         ),
       };
     });
   };
+
   let renderCumRap = (cumRap) => {
     return cumRap.map((chiNhanh) => {
       return {
@@ -58,22 +44,25 @@ export default function TabMovie() {
         label: (
           <div className="text-left w-80">
             <h1 className="truncate">{chiNhanh.tenCumRap}</h1>
-            <p className="truncate">{chiNhanh.diaChi}</p>
+            <p className="truncate text-gray-500">{chiNhanh.diaChi}</p>
           </div>
         ),
         children: renderDanhSachPhim(chiNhanh.danhSachPhim),
       };
     });
   };
+
   let renderDanhSachPhim = (dsPhim) => {
     return (
-      <div style={{ height: 400 }} className="overflow-y-scroll">
+      <div className="flex flex-col overflow-y-auto h-screen">
+        {" "}
+        {/* Giới hạn chiều cao */}
         {dsPhim.map((phim) => {
           return (
-            <div className="flex space-x-5 ">
-              <img className=" h-40" src={phim.hinhAnh} alt="" />
-              <div>
-                <h1>{phim.tenPhim}</h1>
+            <div className="flex space-x-5 py-4" key={phim.maPhim}>
+              <img className="w-24 object-cover" src={phim.hinhAnh} alt="" />
+              <div className="flex-grow">
+                <h1 className="font-bold text-red-500">{phim.tenPhim}</h1>
                 {renderLichChieu(phim.lstLichChieuTheoPhim)}
               </div>
             </div>
@@ -82,6 +71,7 @@ export default function TabMovie() {
       </div>
     );
   };
+
   let renderLichChieu = (lichChieu) => {
     return (
       <div className="grid grid-cols-3 gap-2">
@@ -89,24 +79,27 @@ export default function TabMovie() {
           return (
             <div
               key={lich.maLichChieu}
-              className="border-2 text-center py-2 px-2 "
+              className="bg-white px-5 py-2 rounded border border-gray-200 text-center hover:bg-slate-200 transition"
             >
-              {moment(lich.ngayChieuGioChieu).format("ddd-YYYY/MM/DD-hh:mm")}
+              {moment(lich.ngayChieuGioChieu).format("DD/MM/YYYY ~ hh:mm")}
             </div>
           );
         })}
       </div>
     );
   };
+
   return (
-    <div className="container py-20">
-      <Tabs
-        style={{ height: 400 }}
-        tabPosition="left"
-        defaultActiveKey="1"
-        items={renderHeThongRap()}
-        onChange={onChange}
-      />
+    <div className="container py-20 h-screen flex flex-col">
+      <div className="border rounded-lg shadow-lg p-4 flex-grow flex">
+        <Tabs
+          tabPosition="left"
+          defaultActiveKey="1"
+          items={renderHeThongRap()}
+          onChange={onChange}
+          className="w-full h-full"
+        />
+      </div>
     </div>
   );
 }
