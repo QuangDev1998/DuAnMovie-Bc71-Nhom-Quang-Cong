@@ -3,6 +3,7 @@ import { Carousel } from "antd";
 import { useEffect, useState } from "react";
 import { movieService } from "../../service/userService";
 import { useNavigate } from "react-router-dom";
+import SelectMovie from "./SelectMovie";
 const contentStyle = {
   // height: "400px",
   // color: "#DC2626",
@@ -24,9 +25,10 @@ export default function CarouselMovie() {
       .catch((err) => {});
   }, []);
   let renderMovie = () => {
-    return movieArr.map((phim) => {
+    return movieArr.map((phim, index) => {
       return (
         <div
+          key={index}
           className="h-screen"
           // style={{ ...contentStyle, backgroundImage: `url(${phim.hinhAnh})` }}
         >
@@ -36,5 +38,12 @@ export default function CarouselMovie() {
     });
   };
 
-  return <Carousel draggable>{renderMovie()}</Carousel>;
+  return (
+    <div>
+      <Carousel dotPosition="left" autoplay draggable>
+        {renderMovie()}
+      </Carousel>
+      <SelectMovie />
+    </div>
+  );
 }
