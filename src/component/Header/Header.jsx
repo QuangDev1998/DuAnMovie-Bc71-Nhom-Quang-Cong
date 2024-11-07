@@ -11,6 +11,9 @@ export default function Header() {
     localStorage.removeItem("USER_LOGIN");
     window.location.href = "/login";
   };
+  let handleGohome = () => {
+    window.location.href = "/";
+  };
   // let renderMenu = () => {
   //   if (user) {
   //     return (
@@ -50,12 +53,12 @@ export default function Header() {
   return (
     <header className=" bg-white fixed w-full z-10 bg-opacity-90 ">
       <div className=" flex justify-between h-16 mx-auto">
-        <NavLink
-          to="/"
+        <a
+          onClick={handleGohome}
           className="text-2xl self-center px-8 font-bold text-red-600"
         >
           Netflix
-        </NavLink>
+        </a>
         <ul className="items-stretch hidden space-x-3 lg:flex">
           <li className="flex">
             <a

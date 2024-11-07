@@ -14,12 +14,12 @@ import AddMovie from "./page/Admin/ListMovie/AddMovie";
 import EditMovie from "./page/Admin/ListMovie/EditMovie";
 import BookingPage from "./page/BookingPage/BookingPage";
 import TicketRoom from "./page/TicketRoom/TicketRoom";
-// import Spinner from "./component/Spinner/Spinner";
+import Spinner from "./component/Spinner/Spinner";
 
 export default function App() {
   return (
     <div>
-      {/* <Spinner /> */}
+      <Spinner />
       <BrowserRouter>
         <Routes>
           {/* user route */}
