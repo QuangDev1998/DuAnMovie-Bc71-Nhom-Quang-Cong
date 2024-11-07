@@ -49,12 +49,12 @@ export default function FormLogin() {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
+        label="Tài khoản"
         name="taiKhoan"
         rules={[
           {
             required: true,
-            message: "Please input your username!",
+            message: "Vui lòng nhập tài khoản!",
           },
         ]}
       >
@@ -62,12 +62,12 @@ export default function FormLogin() {
       </Form.Item>
 
       <Form.Item
-        label="Password"
+        label="Mặt khẩu"
         name="matKhau"
         rules={[
           {
             required: true,
-            message: "Please input your password!",
+            message: "Vui lòng nhập mặt khẩu!",
           },
         ]}
       >
@@ -76,11 +76,15 @@ export default function FormLogin() {
 
       <Form.Item>
         <Button block type="primary" htmlType="submit">
-          Submit
+          Đăng nhập
         </Button>
-        or{" "}
-        <a onClick={() => navigate("/register")} href="">
-          Register now!
+        hoặc{" "}
+        <a
+          className="underline text-blue-600"
+          onClick={() => navigate("/register")}
+          href=""
+        >
+          Đăng ký ngay!
         </a>
       </Form.Item>
     </Form>

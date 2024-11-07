@@ -133,8 +133,7 @@ export default function TicketRoom() {
     }
   };
   return (
-    <div className="container">
-      TicketRoom {params.id}
+    <div className="container pt-16">
       <div className="flex space-x-5">
         {/* Seat room */}
         <div className="basis-2/3 ">
@@ -172,7 +171,30 @@ export default function TicketRoom() {
               VND
             </h1>
           </div>
-          {renderThongTinPhim(thongTinPhim)}
+          <div className="px-3 py-5 flex justify-between  ">
+            <h3 className="">Cụm rạp:</h3>
+            <h3 className="text-green-400">{thongTinPhim.tenCumRap}</h3>
+          </div>
+          <div className="px-3 py-5 flex justify-between  ">
+            <h3 className="">Rạp:</h3>
+            <h3 className="text-green-400">{thongTinPhim.tenRap}</h3>
+          </div>
+          <div className="px-3 py-5 flex justify-between  ">
+            <h3 className="">Địa chỉ:</h3>
+            <h3 className="text-green-400">{thongTinPhim.diaChi}</h3>
+          </div>
+          <div className="px-3 py-5 flex justify-between  ">
+            <h3 className="">Tên phim:</h3>
+            <h3 className="text-green-400">{thongTinPhim.tenPhim}</h3>
+          </div>
+          <div className="px-3 py-5 flex justify-between  ">
+            <h3 className="">Ngày chiếu:</h3>
+            <h3 className="text-green-400">{thongTinPhim.ngayChieu}</h3>
+          </div>
+          <div className="px-3 py-5 flex justify-between  ">
+            <h3 className="">Giờ chiếu:</h3>
+            <h3 className="text-green-400">{thongTinPhim.gioChieu}</h3>
+          </div>
           <div className="px-3 py-5 flex justify-between  ">
             <h3 className="">Chọn:</h3>
             {/* ghe da chon */}
@@ -185,9 +207,9 @@ export default function TicketRoom() {
           <div className="px-3 py-5 flex justify-center ">
             <button
               onClick={() => handleDatVe(params.id, gheDuocChon, accessToken)}
-              className="bg-blue-500 hover:bg-blue-700 text-white w-full font-bold py-2 px-4 rounded"
+              className="bg-red-600 hover:bg-red-700 text-white w-full font-bold py-2 px-4 rounded"
             >
-              Purchase
+              Đặt vé
             </button>
           </div>
         </div>
@@ -206,13 +228,13 @@ export default function TicketRoom() {
           src={verifiedIcon}
           alt=""
         />
-        <p className="text-2xl text-center my-5">Purchase success!</p>
+        <p className="text-2xl text-center my-5">Đặt vé thành công!</p>
         <Button
-          className="w-full "
+          className="w-full bg-red-600"
           type="primary"
           onClick={() => navigate("/")}
         >
-          Back to home
+          Trở về trang chủ
         </Button>
       </Modal>
       {/* modal yeu cau */}
@@ -224,7 +246,9 @@ export default function TicketRoom() {
         footer={null}
       >
         <img className="h-10 mx-auto " src={crossIcon} alt="" />
-        <p className="text-2xl text-center my-5">Please login to continue</p>
+        <p className="text-2xl text-center my-5">
+          Vui lòng đăng nhập để đặt vé
+        </p>
         <div className="flex space-x-2  justify-center">
           <button
             onClick={() => {
@@ -234,7 +258,7 @@ export default function TicketRoom() {
             className=" py-1 px-3 bg-blue-600 rounded text-white"
           >
             {" "}
-            Login
+            Đăng nhập
           </button>
           <button
             onClick={() => navigate("/register")}
@@ -242,7 +266,7 @@ export default function TicketRoom() {
             className=" py-1 px-3 bg-green-600 rounded text-white"
           >
             {" "}
-            Register
+            Đăng ký
           </button>
         </div>
       </Modal>

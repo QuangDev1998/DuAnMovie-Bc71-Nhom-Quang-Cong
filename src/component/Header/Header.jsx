@@ -51,7 +51,7 @@ export default function Header() {
   //   </div>
   // );
   return (
-    <header className=" bg-white fixed w-full z-10 bg-opacity-90 ">
+    <header className=" bg-white fixed w-full z-20 bg-opacity-90 ">
       <div className=" flex justify-between h-16 mx-auto">
         <a
           onClick={handleGohome}
