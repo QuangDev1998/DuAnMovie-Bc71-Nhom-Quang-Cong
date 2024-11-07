@@ -79,7 +79,7 @@ export default function TabMovie() {
           return (
             <div
               key={lich.maLichChieu}
-              className="bg-white px-5 py-2 rounded border border-gray-200 text-center hover:bg-slate-200 transition"
+              className="bg-white px-2 py-2 rounded border border-gray-200 text-center hover:bg-slate-200 transition"
             >
               {moment(lich.ngayChieuGioChieu).format("DD/MM/YYYY ~ hh:mm")}
             </div>

@@ -14,65 +14,72 @@ import AddMovie from "./page/Admin/ListMovie/AddMovie";
 import EditMovie from "./page/Admin/ListMovie/EditMovie";
 import BookingPage from "./page/BookingPage/BookingPage";
 import TicketRoom from "./page/TicketRoom/TicketRoom";
+// import Spinner from "./component/Spinner/Spinner";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* user route */}
-        <Route path="/" element={<Layout content={<HomePage />} />} />
-        <Route path="/login" element={<Layout content={<LoginPage />} />} />
-        <Route
-          path="/acc-info"
-          element={<Layout content={<AccInfoPage />} />}
-        />
-        <Route
-          path="/register"
-          element={<Layout content={<RegisterPage />} />}
-        />
-        <Route
-          path="/detail/:id"
-          element={<Layout content={<DetaiPage />} />}
-        />
-        {/* <Route
-          path="/booking/:id"
-          element={<Layout content={<BookingPage />} />}
-        /> */}
-        <Route
-          path="/ticket-room/:id"
-          element={<Layout content={<TicketRoom />} />}
-        />
+    <div>
+      {/* <Spinner /> */}
+      <BrowserRouter>
+        <Routes>
+          {/* user route */}
+          <Route path="/" element={<Layout content={<HomePage />} />} />
+          <Route path="/login" element={<Layout content={<LoginPage />} />} />
+          <Route
+            path="/acc-info"
+            element={<Layout content={<AccInfoPage />} />}
+          />
+          <Route
+            path="/register"
+            element={<Layout content={<RegisterPage />} />}
+          />
+          <Route
+            path="/detail/:id"
+            element={<Layout content={<DetaiPage />} />}
+          />
+          <Route
+            path="/booking/:id"
+            element={<Layout content={<BookingPage />} />}
+          />
+          <Route
+            path="/ticket-room/:id"
+            element={<Layout content={<TicketRoom />} />}
+          />
 
-        {/* admin route */}
-        {/* admin/list-user route */}
-        <Route path="/list-user" element={<Layout content={<ListUser />} />} />
+          {/* admin route */}
+          {/* admin/list-user route */}
+          <Route
+            path="/list-user"
+            element={<Layout content={<ListUser />} />}
+          />
 
-        <Route
-          path="/admin/acc-info"
-          element={<AdminLayout content={<AccInfoPage />} />}
-        />
-        <Route
-          path="/admin/list-user"
-          element={<AdminLayout content={<ListUser />} />}
-        />
-        <Route
-          path="/admin/add-user"
-          element={<AdminLayout content={<AddUserPage />} />}
-        />
-        {/* admin/list-movie route */}
-        <Route
-          path="/admin/list-movie"
-          element={<AdminLayout content={<ListMovie />} />}
-        />
-        <Route
-          path="/admin/add-movie"
-          element={<AdminLayout content={<AddMovie />} />}
-        />
-        <Route
-          path="/admin/edit-movie/:id"
-          element={<AdminLayout content={<EditMovie />} />}
-        />
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="/admin/acc-info"
+            element={<AdminLayout content={<AccInfoPage />} />}
+          />
+          <Route
+            path="/admin/list-user"
+            element={<AdminLayout content={<ListUser />} />}
+          />
+          <Route
+            path="/admin/add-user"
+            element={<AdminLayout content={<AddUserPage />} />}
+          />
+          {/* admin/list-movie route */}
+          <Route
+            path="/admin/list-movie"
+            element={<AdminLayout content={<ListMovie />} />}
+          />
+          <Route
+            path="/admin/add-movie"
+            element={<AdminLayout content={<AddMovie />} />}
+          />
+          <Route
+            path="/admin/edit-movie/:id"
+            element={<AdminLayout content={<EditMovie />} />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }

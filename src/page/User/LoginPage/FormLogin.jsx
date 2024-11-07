@@ -38,16 +38,12 @@ export default function FormLogin() {
     <Form
       name="basic"
       layout="vertical"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 24,
-      }}
       initialValues={{
         taiKhoan: "mafia",
         matKhau: "8386",
       }}
+      className="bg-white p-5 border-solid rounded"
+      style={{ maxWidth: 360 }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
@@ -78,12 +74,7 @@ export default function FormLogin() {
         <Input.Password prefix={<LockOutlined />} placeholder="Password" />
       </Form.Item>
 
-      <Form.Item
-      // wrapperCol={{
-      //   offset: 11,
-      //   span: 24,
-      // }}
-      >
+      <Form.Item>
         <Button block type="primary" htmlType="submit">
           Submit
         </Button>
