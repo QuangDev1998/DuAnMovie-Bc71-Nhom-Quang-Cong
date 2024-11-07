@@ -90,7 +90,7 @@ export default function TabMovie() {
   };
 
   return (
-    <div className="container py-20 h-screen flex flex-col">
+    <div className="container py-20 flex flex-col">
       <div className="border rounded-lg shadow-lg p-4 flex-grow flex">
         <Tabs
           tabPosition="left"

@@ -40,7 +40,7 @@ export default function CarouselMovie() {
 
   return (
     <div>
-      <Carousel dotPosition="left" autoplay draggable>
+      <Carousel arrows="h-full" autoplay draggable>
         {renderMovie()}
       </Carousel>
       <SelectMovie />
