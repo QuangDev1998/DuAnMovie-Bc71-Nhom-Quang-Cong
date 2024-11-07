@@ -53,23 +53,6 @@ export default function TicketRoom() {
     setGheDuocChon(cloneGheDuocChon);
     console.log(gheDuocChon);
   };
-  let renderThongTinPhim = (phim) => {
-    // dung Object.entries de map object
-    console.log(Object.entries(phim));
-    return Object.entries(phim).map(([key, value]) => {
-      // ko render cac key sau
-      if (key === "maLichChieu" || key === "hinhAnh") {
-        return "";
-      } else {
-        return (
-          <div className="px-3 py-5 flex justify-between  ">
-            <h3 className="">{key}:</h3>
-            <h3 className="text-green-400">{value}</h3>
-          </div>
-        );
-      }
-    });
-  };
   let renderDanhSachGhe = (dsGhe) => {
     return dsGhe.map((ghe) => {
       let classGheDD = "";
