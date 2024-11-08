@@ -115,7 +115,7 @@ const TabMovie = () => {
       id="cumRapSection"
     >
       <div className="text-white border bg-red-600 px-4 py-2 text-lg font-semibold rounded">
-        Danh Sách các Rạp Và Xuất Chiếu
+        Danh Sách Các Rạp Và Suất Chiếu
       </div>
       <div className="border rounded-lg shadow-lg p-4 flex-grow flex mt-6 w-full">
         <Tabs
