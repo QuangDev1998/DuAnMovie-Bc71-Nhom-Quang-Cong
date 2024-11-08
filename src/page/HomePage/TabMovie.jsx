@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { movieService } from "../../service/userService";
 import moment from "moment";
@@ -29,7 +29,9 @@ const TabMovie = () => {
     return heThongRap.map((heThongRap) => {
       return {
         key: heThongRap.maHeThongRap,
-        label: <img className="w-20" src={heThongRap.logo} alt="" />,
+        label: (
+          <img className="w-20 sm:w-24 md:w-28" src={heThongRap.logo} alt="" />
+        ),
         children: (
           <Tabs
             tabPosition="left"
@@ -48,7 +50,7 @@ const TabMovie = () => {
       return {
         key: index,
         label: (
-          <div className="text-left w-80">
+          <div className="text-left w-80 sm:w-96">
             <h1 className="truncate">{chiNhanh.tenCumRap}</h1>
             <p className="truncate text-gray-500">{chiNhanh.diaChi}</p>
           </div>
@@ -60,14 +62,27 @@ const TabMovie = () => {
 
   const renderDanhSachPhim = (dsPhim) => {
     return (
-      <div className="flex flex-col overflow-y-auto h-screen">
+      <div className="flex flex-col overflow-y-auto h-full sm:h-[calc(100vh-200px)]">
+        {/* Giới hạn chiều cao và có thanh cuộn */}
         {dsPhim.map((phim) => {
           return (
-            <div className="flex space-x-5 py-4" key={phim.maPhim}>
-              <img className="w-24 object-cover" src={phim.hinhAnh} alt="" />
+            <div
+              className="flex items-center space-x-5 py-4 sm:flex-row sm:space-x-4"
+              key={phim.maPhim}
+            >
+              {/* Ảnh phim */}
+              <img
+                className="w-24 sm:w-32 object-cover"
+                src={phim.hinhAnh}
+                alt={phim.tenPhim}
+              />
+              {/* Tên phim và lịch chiếu */}
               <div className="flex-grow">
                 <h1 className="font-bold text-red-500">{phim.tenPhim}</h1>
-                {renderLichChieu(phim.lstLichChieuTheoPhim)}
+                <div className="grid grid-cols-3 gap-2 mt-2 sm:flex sm:space-x-3 sm:flex-wrap">
+                  {/* Lịch chiếu */}
+                  {renderLichChieu(phim.lstLichChieuTheoPhim)}
+                </div>
               </div>
             </div>
           );
@@ -78,7 +93,7 @@ const TabMovie = () => {
 
   const renderLichChieu = (lichChieu) => {
     return (
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-2 sm:grid-cols-2 md:grid-cols-3">
         {lichChieu.slice(0, 6).map((lich) => {
           return (
             <div
@@ -96,7 +111,7 @@ const TabMovie = () => {
 
   return (
     <div
-      className="container py-20 flex flex-col items-center"
+      className="container py-20 flex flex-col items-center px-4 md:px-8"
       id="cumRapSection"
     >
       <div className="text-white border bg-red-600 px-4 py-2 text-lg font-semibold rounded">
