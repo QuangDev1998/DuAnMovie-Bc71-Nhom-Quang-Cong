@@ -95,8 +95,14 @@ const TabMovie = () => {
   };
 
   return (
-    <div className="container py-20 flex flex-col" id="cumRapSection">
-      <div className="border rounded-lg shadow-lg p-4 flex-grow flex">
+    <div
+      className="container py-20 flex flex-col items-center"
+      id="cumRapSection"
+    >
+      <div className="text-white border bg-red-600 px-4 py-2 text-lg font-semibold rounded">
+        Danh Sách các Rạp Và Xuất Chiếu
+      </div>
+      <div className="border rounded-lg shadow-lg p-4 flex-grow flex mt-6 w-full">
         <Tabs
           tabPosition="left"
           defaultActiveKey="1"

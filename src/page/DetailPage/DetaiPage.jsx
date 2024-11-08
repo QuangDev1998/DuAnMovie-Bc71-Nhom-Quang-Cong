@@ -77,10 +77,27 @@ export default function DetailPage() {
         }
         return null;
       })
-      .filter((item) => item !== null); // Loại bỏ các hệ thống rạp không có xuất chiếu
+      .filter((item) => item !== null);
+
+    if (filteredHeThongRap.length === 0) {
+      return [
+        {
+          key: "no-schedule",
+          label: "Thông Báo",
+          children: (
+            <div className="text-center flex items-center justify-center h-36">
+              <h1 className="text-3xl text-white">
+                Phim này hiện tại không có lịch chiếu
+              </h1>
+            </div>
+          ),
+        },
+      ];
+    }
 
     return filteredHeThongRap.slice(0, 6);
   };
+
   const renderCumRap = (cumRap) => {
     return cumRap.slice(0, 6).map((chiNhanh) => {
       return (
@@ -145,7 +162,6 @@ export default function DetailPage() {
               src={movieInfo.hinhAnh}
               alt="Movie Poster"
             />
-
             <div className="flex flex-col space-y-10">
               <h2 className="text-2xl font-semibold break-words max-w-xs">
                 {movieInfo.tenPhim}
@@ -179,7 +195,7 @@ export default function DetailPage() {
 
         <div
           id="tabs-section"
-          className="container py-20 flex flex-col flex-grow"
+          className="container pt-20 flex flex-col flex-grow"
         >
           <Tabs
             tabPosition="left"

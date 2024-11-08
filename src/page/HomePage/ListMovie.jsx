@@ -25,7 +25,13 @@ export default function ListMovie() {
           className="hover:bg-red-600 hover:scale-90 duration-300 transition"
           onClick={() => navigate(`detail/${phim.maPhim}`)}
           hoverable
-          cover={<img className="h-80" alt="example" src={phim.hinhAnh} />}
+          cover={
+            <img
+              className="h-80 w-full object-cover object-center"
+              alt="example"
+              src={phim.hinhAnh}
+            />
+          }
         >
           <Meta title={phim.tenPhim} />
         </Card>
@@ -33,7 +39,7 @@ export default function ListMovie() {
     });
   };
   return (
-    <div className="mt-14 grid  lg:grid-cols-6 sm:grid-cols-3 gap-5">
+    <div className="container pt-20 mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
       {renderMovie()}
     </div>
   );
