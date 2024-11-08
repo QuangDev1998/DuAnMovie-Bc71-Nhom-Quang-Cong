@@ -100,12 +100,12 @@ const RegisterPage = () => {
               {/* username */}
               <Form.Item
                 name="taiKhoan"
-                label="Username"
-                tooltip="What do you want others to call you?"
+                label="Tài khoản"
+                tooltip="Nhập tài khoản bạn muốn"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your username!",
+                    message: "Tài khoản không được để trống!",
                     whitespace: true,
                   },
                 ]}
@@ -116,11 +116,11 @@ const RegisterPage = () => {
               {/* matKhau */}
               <Form.Item
                 name="matKhau"
-                label="Password"
+                label="Mật khẩu"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your password!",
+                    message: "Mật khẩu không được để trống!",
                   },
                 ]}
                 hasFeedback
@@ -130,12 +130,11 @@ const RegisterPage = () => {
               {/* hoTen */}
               <Form.Item
                 name="hoTen"
-                label="Name"
-                tooltip="What do you want others to call you?"
+                label="Họ tên"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your name!",
+                    message: "Họ tên không được để trống!",
                     whitespace: true,
                   },
                 ]}
@@ -145,16 +144,16 @@ const RegisterPage = () => {
               {/* maNhom */}
               <Form.Item
                 name="maNhom"
-                label="Group"
+                label="Mã nhóm"
                 rules={[
                   {
                     required: true,
-                    message: "Please select group!",
+                    message: "Vui lòng chọn nhóm!",
                   },
                 ]}
                 hasFeedback
               >
-                <Select placeholder="select your group">
+                <Select placeholder="Nhóm của bạn">
                   <Option value="GP01">GP01</Option>
                   <Option value="GP02">GP02</Option>
                   <Option value="GP03">GP03</Option>
@@ -166,15 +165,15 @@ const RegisterPage = () => {
               {/* email */}
               <Form.Item
                 name="email"
-                label="E-mail"
+                label="Email"
                 rules={[
                   {
                     type: "email",
-                    message: "The input is not valid E-mail!",
+                    message: "Email không hợp lệ!",
                   },
                   {
                     required: true,
-                    message: "Please input your E-mail!",
+                    message: "Email không được để trống!",
                   },
                 ]}
                 hasFeedback
@@ -184,24 +183,21 @@ const RegisterPage = () => {
               {/* matKhau confirm */}
               <Form.Item
                 name="confirm"
-                label="Confirm Password"
+                label="Xác nhận"
+                tooltip="Nhập lại mật khẩu"
                 dependencies={["matKhau"]}
                 hasFeedback
                 rules={[
                   {
                     required: true,
-                    message: "Please confirm your password!",
+                    message: "Nhập lại mật khẩu!",
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
                       if (!value || getFieldValue("matKhau") === value) {
                         return Promise.resolve();
                       }
-                      return Promise.reject(
-                        new Error(
-                          "The new password that you entered do not match!"
-                        )
-                      );
+                      return Promise.reject(new Error("Mật khẩu không khớp!"));
                     },
                   }),
                 ]}
@@ -211,20 +207,20 @@ const RegisterPage = () => {
               {/* soDT */}
               <Form.Item
                 name="soDT"
-                label="Phone Number"
+                label="Số ĐT"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your phone number!",
+                    message: "Điện thoại không được để trống!",
                   },
                   {
                     required: true,
-                    message: "Must be number",
+                    message: "Phải là số",
                     pattern: new RegExp(/^[0-9]+$/),
                   },
                   {
                     required: true,
-                    message: "Must have 10 digits",
+                    message: "Phải có 10 số",
                     pattern: new RegExp(/^\d{10}$/),
                   },
                 ]}
@@ -248,7 +244,7 @@ const RegisterPage = () => {
                 validator: (_, value) =>
                   value
                     ? Promise.resolve()
-                    : Promise.reject(new Error("Should accept agreement")),
+                    : Promise.reject(new Error("Vui lòng chấp nhận quy định")),
               },
             ]}
             {...tailFormItemLayout}
@@ -256,7 +252,7 @@ const RegisterPage = () => {
             className="mb-0"
           >
             <Checkbox>
-              I have read the <a href="">agreement</a>
+              Tôi đã đọc <a href="">quy định</a>
             </Checkbox>
           </Form.Item>
           {/* register button */}
@@ -266,12 +262,19 @@ const RegisterPage = () => {
             className="my-2"
           >
             <Button type="primary" htmlType="submit">
-              Register
+              Đăng ký
             </Button>
           </Form.Item>
-          <Form.Item className="mb-0" wrapperCol={{ offset: 10, span: 24 }}>
-            <a clasnm onClick={() => navigate("/login")} href="">
-              Already have account ?
+          <Form.Item
+            className="mb-0 text-right"
+            wrapperCol={{ offset: 10, span: 24 }}
+          >
+            <a
+              className="underline text-blue-600"
+              onClick={() => navigate("/login")}
+              href=""
+            >
+              Đã có tài khoản? Đăng nhập
             </a>
           </Form.Item>
         </Form>
@@ -289,14 +292,14 @@ const RegisterPage = () => {
             src={verifiedIcon}
             alt=""
           />
-          <p className="text-2xl text-center my-5">Register success!</p>
+          <p className="text-2xl text-center my-5">Đăng ký thành công!</p>
 
           <Button
             className="w-full "
             type="primary"
             onClick={() => navigate("/login")}
           >
-            Back to login
+            Quay về trang đăng nhập
           </Button>
         </Modal>
       </div>

@@ -14,8 +14,8 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white fixed w-full z-10 bg-opacity-90">
-      <div className="flex justify-between h-16 mx-auto">
+    <header className=" bg-white fixed w-full z-20 bg-opacity-90 ">
+      <div className=" flex justify-between h-16 mx-auto">
         <a
           onClick={handleGohome}
           className="text-2xl self-center px-8 font-bold text-red-600 cursor-pointer"
