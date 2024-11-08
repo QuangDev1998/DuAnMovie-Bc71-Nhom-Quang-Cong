@@ -67,7 +67,6 @@ export default function TicketRoom() {
         return (
           <button
             key={ghe.maGhe}
-            onClick={() => handleGheDuocChon(ghe)}
             className="w-10 h-10 bg-gray-500 flex items-center justify-center rounded hover:scale-105  border-solid border-4"
           >
             X

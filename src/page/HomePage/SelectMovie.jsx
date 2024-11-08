@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { movieService } from "../../service/userService";
-import { Select, Modal } from "antd"; // Import Modal từ antd
+import { Select, Modal } from "antd";
 import moment from "moment";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 export default function SelectMovie() {
   const [movieArr, setMovieArr] = useState([]);
   const [heThongRap, setTheThongRap] = useState([]);
   const [rapChieuArr, setRapChieuArr] = useState([]);
   const [rapChieu, setRapChieu] = useState({});
-  const [select1, setSelect1] = useState([]); // Phim
-  const [select2, setSelect2] = useState([]); // Rạp
-  const [select3, setSelect3] = useState([]); // Ngày giờ chiếu
+  const [select1, setSelect1] = useState([]);
+  const [select2, setSelect2] = useState([]);
+  const [select3, setSelect3] = useState([]);
 
-  const [isModalVisible, setIsModalVisible] = useState(false); // Trạng thái của modal
-  const [modalContent, setModalContent] = useState(""); // Nội dung của modal
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
-  const [selectedMovie, setSelectedMovie] = useState(null); // Lưu phim đã chọn
-  const [selectedCinema, setSelectedCinema] = useState(null); // Lưu rạp đã chọn
-  const [selectedShowtime, setSelectedShowtime] = useState(null); // Lưu lịch chiếu đã chọn
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedCinema, setSelectedCinema] = useState(null);
+  const [selectedShowtime, setSelectedShowtime] = useState(null);
 
-  const navigate = useNavigate(); // Khởi tạo navigate
+  const navigate = useNavigate();
 
   const onChange1 = (value) => {
-    setSelectedMovie(value); // Lưu phim đã chọn
+    setSelectedMovie(value);
     movieService
       .layThongTinLichChieu(value)
       .then((result) => {
@@ -35,7 +35,7 @@ export default function SelectMovie() {
   };
 
   const onChange2 = (value) => {
-    setSelectedCinema(value); // Lưu rạp đã chọn
+    setSelectedCinema(value);
     let selectedRapChieu = rapChieuArr.filter(
       (rapChieu) => rapChieu.maCumRap === value
     );
@@ -43,7 +43,7 @@ export default function SelectMovie() {
   };
 
   const onChange3 = (value) => {
-    setSelectedShowtime(value); // Lưu lịch chiếu đã chọn
+    setSelectedShowtime(value);
   };
 
   useEffect(() => {
@@ -109,38 +109,33 @@ export default function SelectMovie() {
     setSelect3(select3Clone);
   };
 
-  // Hàm kiểm tra điều kiện và chuyển hướng
   const handleNavigate = () => {
-    // Kiểm tra xem người dùng đã chọn phim chưa
     if (!selectedMovie) {
       setModalContent("Chưa chọn phim, vui lòng chọn phim !");
-      setIsModalVisible(true); // Hiển thị modal khi chưa chọn phim
+      setIsModalVisible(true);
       return;
     }
 
-    // Kiểm tra xem người dùng đã chọn rạp chưa
     if (!selectedCinema) {
       setModalContent("Chưa chọn rạp, vui lòng chọn rạp !");
-      setIsModalVisible(true); // Hiển thị modal khi chưa chọn rạp
+      setIsModalVisible(true);
       return;
     }
 
-    // Kiểm tra xem người dùng đã chọn ngày giờ chiếu chưa
     if (!selectedShowtime) {
       setModalContent(
         "Chưa chọn ngày giờ chiếu, vui lòng chọn ngày giờ chiếu !"
       );
-      setIsModalVisible(true); // Hiển thị modal khi chưa chọn ngày giờ chiếu
+      setIsModalVisible(true);
       return;
     }
 
-    // Nếu đã chọn đủ thông tin, chuyển hướng đến trang ticket room
-    navigate(`/ticket-room/${selectedShowtime}`); // Chuyển hướng đến trang /ticket-room/:id
+    navigate(`/ticket-room/${selectedShowtime}`);
   };
 
   // Hàm đóng modal
   const handleOk = () => {
-    setIsModalVisible(false); // Đóng modal
+    setIsModalVisible(false);
   };
 
   return (
@@ -192,19 +187,18 @@ export default function SelectMovie() {
       <div className="w-2/6 h-full py-4 px-2">
         <button
           className="text-white bg-red-600 hover:bg-red-900 transition-all duration-300 w-full h-full rounded"
-          onClick={handleNavigate} // Gọi hàm chuyển hướng khi nhấn nút
+          onClick={handleNavigate}
         >
           MUA VÉ NGAY
         </button>
       </div>
 
-      {/* Modal thông báo */}
       <Modal
         title={
           <h2 style={{ textAlign: "center", fontWeight: "bold" }}>
             {modalContent}
           </h2>
-        } // Tiêu đề căn giữa và in đậm
+        }
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleOk}

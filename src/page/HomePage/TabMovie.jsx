@@ -1,25 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Tabs } from "antd";
 import { movieService } from "../../service/userService";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
-export default function TabMovie() {
-  const onChange = (key) => {
-    console.log(key);
-  };
-
+const TabMovie = () => {
+  const navigate = useNavigate();
   const [heThongRap, setHeThongRap] = useState([]);
+
   useEffect(() => {
     movieService
       .layHeThongRap()
       .then((result) => {
-        console.log(result);
         setHeThongRap(result.data.content);
       })
       .catch((err) => {});
   }, []);
 
-  let renderHeThongRap = () => {
+  const handleLichChieuClick = (id) => {
+    navigate(`/ticket-room/${id}`);
+  };
+
+  const onChange = (key) => {
+    console.log(key);
+  };
+
+  const renderHeThongRap = () => {
     return heThongRap.map((heThongRap) => {
       return {
         key: heThongRap.maHeThongRap,
@@ -37,7 +43,7 @@ export default function TabMovie() {
     });
   };
 
-  let renderCumRap = (cumRap) => {
+  const renderCumRap = (cumRap) => {
     return cumRap.map((chiNhanh) => {
       return {
         key: chiNhanh.maCumRap,
@@ -52,11 +58,9 @@ export default function TabMovie() {
     });
   };
 
-  let renderDanhSachPhim = (dsPhim) => {
+  const renderDanhSachPhim = (dsPhim) => {
     return (
       <div className="flex flex-col overflow-y-auto h-screen">
-        {" "}
-        {/* Giới hạn chiều cao */}
         {dsPhim.map((phim) => {
           return (
             <div className="flex space-x-5 py-4" key={phim.maPhim}>
@@ -72,14 +76,15 @@ export default function TabMovie() {
     );
   };
 
-  let renderLichChieu = (lichChieu) => {
+  const renderLichChieu = (lichChieu) => {
     return (
       <div className="grid grid-cols-3 gap-2">
         {lichChieu.slice(0, 6).map((lich) => {
           return (
             <div
+              onClick={() => handleLichChieuClick(lich.maLichChieu)}
               key={lich.maLichChieu}
-              className="bg-white px-2 py-2 rounded border border-gray-200 text-center hover:bg-slate-200 transition"
+              className="bg-white px-2 py-2 rounded border border-gray-200 text-center hover:bg-slate-200 transition cursor-pointer"
             >
               {moment(lich.ngayChieuGioChieu).format("DD/MM/YYYY ~ hh:mm")}
             </div>
@@ -90,7 +95,7 @@ export default function TabMovie() {
   };
 
   return (
-    <div className="container py-20 flex flex-col">
+    <div className="container py-20 flex flex-col" id="cumRapSection">
       <div className="border rounded-lg shadow-lg p-4 flex-grow flex">
         <Tabs
           tabPosition="left"
@@ -102,4 +107,6 @@ export default function TabMovie() {
       </div>
     </div>
   );
-}
+};
+
+export default TabMovie;
