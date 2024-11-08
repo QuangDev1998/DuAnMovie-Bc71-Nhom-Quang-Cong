@@ -44,9 +44,9 @@ const TabMovie = () => {
   };
 
   const renderCumRap = (cumRap) => {
-    return cumRap.map((chiNhanh) => {
+    return cumRap.map((chiNhanh, index) => {
       return {
-        key: chiNhanh.maCumRap,
+        key: index,
         label: (
           <div className="text-left w-80">
             <h1 className="truncate">{chiNhanh.tenCumRap}</h1>

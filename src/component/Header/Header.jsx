@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   const user = useSelector((state) => state.userSlice.loginData);
-
+  const cumRapRef = useRef(null);
   const handleLogout = () => {
     localStorage.removeItem("USER_LOGIN");
     window.location.href = "/login";
@@ -11,6 +12,36 @@ export default function Header() {
 
   const handleGohome = () => {
     window.location.href = "/";
+  };
+  const handleGoToCumRap = () => {
+    // Cuộn đến phần "Cụm Rạp" khi click
+    const cumRapElement = document.getElementById("cumRapSection");
+    if (cumRapElement) {
+      cumRapElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+  const handleGoToLichChieu = () => {
+    // Cuộn đến phần "Cụm Rạp" khi click
+    const lichChieuElement = document.getElementById("lichChieuSection");
+    if (lichChieuElement) {
+      lichChieuElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+  const handleGoToUngDung = () => {
+    // Cuộn đến phần "Cụm Rạp" khi click
+    const ungDungElement = document.getElementById("ungDungSection");
+    if (ungDungElement) {
+      ungDungElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return (
@@ -22,23 +53,38 @@ export default function Header() {
         >
           Netflix
         </a>
-        <a href="">
-          <i class="fi fi-brands-youtube"></i>
-        </a>
+
         <ul className="items-stretch hidden space-x-3 lg:flex">
           {/* Các phần mục khác */}
           <li className="flex">
-            <a className="flex items-center px-4 font-semibold hover:text-red-600 transition cursor-pointer">
+            <NavLink
+              onClick={handleGohome}
+              className="flex items-center px-4 font-semibold hover:text-red-600 transition cursor-pointer"
+            >
+              Trang Chủ
+            </NavLink>
+          </li>
+          <li className="flex">
+            <a
+              onClick={handleGoToLichChieu}
+              className="flex items-center px-4 font-semibold hover:text-red-600 transition cursor-pointer"
+            >
               Lịch Chiếu
             </a>
           </li>
           <li className="flex">
-            <a className="flex items-center px-4 font-semibold hover:text-red-600 transition cursor-pointer">
+            <a
+              onClick={handleGoToCumRap}
+              className=" flex items-center px-4 font-semibold hover:text-red-600 transition cursor-pointer"
+            >
               Cụm Rạp
             </a>
           </li>
           <li className="flex">
-            <a className="flex items-center px-4 font-semibold hover:text-red-600 transition cursor-pointer">
+            <a
+              onClick={handleGoToUngDung}
+              className="flex items-center px-4 font-semibold hover:text-red-600 transition cursor-pointer"
+            >
               Ứng Dụng
             </a>
           </li>

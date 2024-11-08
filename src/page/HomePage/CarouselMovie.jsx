@@ -27,13 +27,6 @@ const bannerList = [
     hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/lat-mat-48h.png",
     trailer: "kBY2k3G6LsM",
   },
-
-  {
-    maBanner: 3,
-    maPhim: 1284,
-    hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/cuoc-chien-sinh-tu.png",
-    trailer: "Eu9G8n05-Ug",
-  },
 ];
 export default function CarouselMovie() {
   const [movieArr, setMovieArr] = useState([]);

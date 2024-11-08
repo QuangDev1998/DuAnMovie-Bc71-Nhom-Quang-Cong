@@ -32,5 +32,9 @@ export default function ListMovie() {
       );
     });
   };
-  return <div className="mt-14 grid grid-cols-6 gap-5">{renderMovie()}</div>;
+  return (
+    <div className="mt-14 grid  lg:grid-cols-6 sm:grid-cols-3 gap-5">
+      {renderMovie()}
+    </div>
+  );
 }
