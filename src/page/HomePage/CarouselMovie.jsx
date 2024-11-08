@@ -17,15 +17,15 @@ const contentStyle = {
 const bannerList = [
   {
     maBanner: 1,
-    maPhim: 1283,
-    hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/lat-mat-48h.png",
-    trailer: "uqJ9u7GSaYM",
+    maPhim: 1282,
+    hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/ban-tay-diet-quy.png",
+    trailer: "uqJ9u7GSaYM", // YouTube video ID
   },
   {
     maBanner: 2,
-    maPhim: 1282,
-    hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/ban-tay-diet-quy.png",
-    trailer: "kBY2k3G6LsM", // YouTube video ID
+    maPhim: 1283,
+    hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/lat-mat-48h.png",
+    trailer: "kBY2k3G6LsM",
   },
 
   {
