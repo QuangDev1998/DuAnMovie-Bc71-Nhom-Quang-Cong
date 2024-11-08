@@ -120,7 +120,7 @@ export default function TicketRoom() {
       <div className="flex space-x-5">
         {/* Seat room */}
         <div className="basis-2/3 ">
-          <div className="grid grid-cols-12 gap-3">
+          <div className="grid lg:grid-cols-12 md:grid-cols-6 sm:grid-cols-3 md:gap-3 sm:gap-1">
             {renderDanhSachGhe(danhSachGhe)}
           </div>
           {/* chu thich ghe */}
