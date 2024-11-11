@@ -60,8 +60,7 @@ const RegisterPage = () => {
           width: 70,
         }}
       >
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
+        <Option value="84">+84</Option>
       </Select>
     </Form.Item>
   );
@@ -87,7 +86,7 @@ const RegisterPage = () => {
           className="bg-white p-5 border-solid rounded"
           onFinish={onFinish}
           initialValues={{
-            prefix: "86",
+            prefix: "84",
           }}
           // style={{
           //   maxWidth: 600,
