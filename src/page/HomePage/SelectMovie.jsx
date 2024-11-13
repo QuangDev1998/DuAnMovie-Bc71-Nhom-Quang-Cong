@@ -4,14 +4,17 @@ import { Select, Modal } from "antd";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
-export default function SelectMovie() {
+export default function SelectMovieCopy() {
   const [movieArr, setMovieArr] = useState([]);
   const [heThongRap, setTheThongRap] = useState([]);
   const [rapChieuArr, setRapChieuArr] = useState([]);
   const [rapChieu, setRapChieu] = useState({});
   const [select1, setSelect1] = useState([]);
-  const [select2, setSelect2] = useState([]);
+  const [select2, setSelect2] = useState(null);
   const [select3, setSelect3] = useState([]);
+
+  const [selected2, setSelected2] = useState(null);
+  const [selected3, setSelected3] = useState(null);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -36,6 +39,11 @@ export default function SelectMovie() {
 
   const onChange2 = (value) => {
     setSelectedCinema(value);
+    // Vì set value của compo theo state nên cần pải update state theo value onchange
+    let index = select2.findIndex((rapChieu) => rapChieu.value === value);
+    if (index !== -1) {
+      setSelected2(select2[index].value);
+    }
     let selectedRapChieu = rapChieuArr.filter(
       (rapChieu) => rapChieu.maCumRap === value
     );
@@ -44,6 +52,11 @@ export default function SelectMovie() {
 
   const onChange3 = (value) => {
     setSelectedShowtime(value);
+    // Vì set value của compo theo state nên cần pải update state theo value onchange
+    let index = select3.findIndex((rapChieu) => rapChieu.value === value);
+    if (index !== -1) {
+      setSelected3(select3[index].value);
+    }
   };
 
   useEffect(() => {
@@ -68,6 +81,35 @@ export default function SelectMovie() {
   useEffect(() => {
     renderSelect3();
   }, [rapChieu]);
+  // Khi data select2 thay đổi setSelected2 = select2[0].value để value của compo Select2 tự update theo
+  useEffect(() => {
+    if (select2) {
+      if (select2.length > 0) {
+        setSelected2(select2[0].value);
+      }
+    }
+  }, [select2]);
+  // Sau khi value compo Select2 update sẽ tự động chạy hàm onChange2 nhằm tạo data cho compo Select3
+  useEffect(() => {
+    if (selected2) {
+      onChange2(selected2);
+    }
+  }, [selected2]);
+
+  // Khi đã có data cho compo Select3 sẽ tự update value cho compo này = select3[0].value
+  useEffect(() => {
+    if (select3) {
+      if (select3.length > 0) {
+        setSelected3(select3[0].value);
+      }
+    }
+  }, [select3]);
+  // Sau khi value compo Select3 update sẽ tự động chạy hàm onChange3
+  useEffect(() => {
+    if (selected3) {
+      onChange3(selected3);
+    }
+  }, [selected3]);
 
   let renderSelect1 = () => {
     let select1Arr = [];
@@ -83,13 +125,16 @@ export default function SelectMovie() {
   let renderSelect2 = () => {
     let cumRapClone = [];
     let rapChieuClone = [];
-    heThongRap.map((heThongRap) => {
-      return heThongRap.cumRapChieu.map((rapChieu) => {
-        rapChieuClone.push(rapChieu);
-        cumRapClone.push({
-          value: rapChieu.maCumRap,
-          label: rapChieu.tenCumRap,
-        });
+    let heThongRapArr = heThongRap.map((heThongRap) => {
+      return heThongRap.cumRapChieu;
+    });
+    let rapChieuArr = heThongRapArr.flat();
+
+    rapChieuArr.map((rapChieu) => {
+      rapChieuClone.push(rapChieu);
+      cumRapClone.push({
+        value: rapChieu.maCumRap,
+        label: rapChieu.tenCumRap,
       });
     });
     setSelect2(cumRapClone);
@@ -98,15 +143,19 @@ export default function SelectMovie() {
 
   let renderSelect3 = () => {
     let select3Clone = [];
-    if (rapChieu.lichChieuPhim) {
-      rapChieu.lichChieuPhim.map((lichChieu) => {
-        select3Clone.push({
-          label: moment(lichChieu.ngayChieuGioChieu).format("DD/MM/YY ~ HH:MM"),
-          value: lichChieu.maLichChieu,
+    if (rapChieu) {
+      if (rapChieu.lichChieuPhim) {
+        rapChieu.lichChieuPhim.map((lichChieu) => {
+          select3Clone.push({
+            label: moment(lichChieu.ngayChieuGioChieu).format(
+              "DD/MM/YY ~ HH:MM"
+            ),
+            value: lichChieu.maLichChieu,
+          });
         });
-      });
+      }
+      setSelect3(select3Clone);
     }
-    setSelect3(select3Clone);
   };
 
   const handleNavigate = () => {
@@ -165,6 +214,7 @@ export default function SelectMovie() {
           variant="borderless"
           placeholder="Rạp"
           optionFilterProp="label"
+          value={selected2}
           onChange={onChange2}
           options={select2}
         />
@@ -180,6 +230,7 @@ export default function SelectMovie() {
           className="w-full"
           placeholder="Ngày giờ chiếu"
           optionFilterProp="label"
+          value={selected3}
           onChange={onChange3}
           options={select3}
         />
