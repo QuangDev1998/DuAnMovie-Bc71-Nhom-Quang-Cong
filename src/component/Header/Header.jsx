@@ -22,9 +22,6 @@ export default function Header() {
         >
           Netflix
         </a>
-        <a href="">
-          <i class="fi fi-brands-youtube"></i>
-        </a>
         <ul className="items-stretch hidden space-x-3 lg:flex">
           {/* Các phần mục khác */}
           <li className="flex">
