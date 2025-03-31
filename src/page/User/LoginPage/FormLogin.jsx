@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userService } from "../../../service/userService";
 import { setLoginData } from "../../../redux/userSlice";
+import { loginActionService } from "../../../redux/action";
 
 export default function FormLogin() {
   let navigate = useNavigate();
   let dispatch = useDispatch();
 
-  const onFinish = (values) => {
+  const onFinish2 = (values) => {
     console.log("🚀 ~ onFinish ~ values:", values);
     userService
       .loginAction(values)
@@ -29,6 +30,24 @@ export default function FormLogin() {
       .catch((err) => {
         console.log(err);
         message.error("Login fail");
+      });
+  };
+  const onFinish = (values) => {
+    dispatch(loginActionService(values))
+      .unwrap()
+      .then((result) => {
+        console.log(result);
+        let loginJson = JSON.stringify(result);
+        localStorage.setItem("USER_LOGIN", loginJson);
+
+        if (result.maLoaiNguoiDung === "QuanTri") {
+          navigate("/admin/list-user");
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   const onFinishFailed = (errorInfo) => {

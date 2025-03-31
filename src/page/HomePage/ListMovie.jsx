@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { http } from "../../service/config";
 import { movieService } from "../../service/userService";
 import { Card } from "antd";
 import Meta from "antd/es/card/Meta";

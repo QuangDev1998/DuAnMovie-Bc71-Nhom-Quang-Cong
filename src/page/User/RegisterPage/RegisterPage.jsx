@@ -47,7 +47,6 @@ const RegisterPage = () => {
       .then((result) => {
         console.log("Reg res:", result);
         setModalOpen(true);
-        // navigate("/login");
       })
       .catch((err) => {
         console.log(err);

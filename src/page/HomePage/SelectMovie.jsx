@@ -31,6 +31,7 @@ export default function SelectMovieCopy() {
       .layThongTinLichChieu(value)
       .then((result) => {
         setTheThongRap(result.data.content.heThongRapChieu);
+        console.log(heThongRap);
       })
       .catch((err) => {
         console.log(err);
