@@ -2,7 +2,7 @@ import axios from "axios";
 import { store } from "../index";
 import { turnOffLoading, turnOnLoading } from "../redux/spinnerSlice";
 let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA3MSIsIkhldEhhblN0cmluZyI6IjA0LzEyLzIwMjUiLCJIZXRIYW5UaW1lIjoiMTc0MzcyNDgwMDAwMCIsIm5iZiI6MTcxNDA2NDQwMCwiZXhwIjoxNzQzODcyNDAwfQ.Q4MXAIwdAPn5-wxZenfC7Bexo2iHlEiwahuMlSxkYps";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA3MSIsIkhldEhhblN0cmluZyI6IjI1LzEyLzIwMjUiLCJIZXRIYW5UaW1lIjoiMTc0MzcyNDgwMDAwMCIsIm5iZiI6MTcxNDA2NDQwMCwiZXhwIjoxNzQzODcyNDAwfQ.Mm0wS11uUmrRuKhS3VjTKyUZu23p8fbZ8mubns_phes";
 
 export let http = axios.create({
   baseURL: "https://movienew.cybersoft.edu.vn/",
